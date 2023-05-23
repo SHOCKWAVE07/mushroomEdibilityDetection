@@ -8,6 +8,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
 from sklearn.metrics import precision_score, recall_score
+import matplotlib.pyplot as plt
 
 def main():
     st.title("Binary Classification Web App")
@@ -34,6 +35,7 @@ def main():
         if 'Confusion Matrix' in metrics_list:
             st.subheader("Confusion Matrix")
             plot_confusion_matrix(model, x_test, y_test, display_labels=class_names)
+            st.set_option('deprecation.showPyplotGlobalUse', False)
             st.pyplot()
 
         if 'ROC Curve' in metrics_list:
