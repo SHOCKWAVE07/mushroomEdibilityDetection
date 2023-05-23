@@ -10,7 +10,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import precision_score, recall_score
 
 
-from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, plot_roc_curve, plot_precision_recall_curve
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix
+# , plot_roc_curve, plot_precision_recall_curve
 
 
 def main():
