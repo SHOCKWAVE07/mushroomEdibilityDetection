@@ -8,7 +8,10 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import plot_confusion_matrix, plot_roc_curve, plot_precision_recall_curve
 from sklearn.metrics import precision_score, recall_score
-import matplotlib.pyplot as plt
+
+
+from sklearn.metrics import ConfusionMatrixDisplay, confusion_matrix, plot_roc_curve, plot_precision_recall_curve
+
 
 def main():
     st.title("Binary Classification Web App")
@@ -32,21 +35,28 @@ def main():
         return x_train, x_test, y_train, y_test
     
     def plot_metrics(metrics_list):
+        # if 'Confusion Matrix' in metrics_list:
+        #     st.subheader("Confusion Matrix")
+        #     plot_confusion_matrix(model, x_test, y_test, display_labels=class_names)
+        #     st.set_option('deprecation.showPyplotGlobalUse', False)
+        #     st.pyplot()
         if 'Confusion Matrix' in metrics_list:
             st.subheader("Confusion Matrix")
-            plot_confusion_matrix(model, x_test, y_test, display_labels=class_names)
+            cm = confusion_matrix(y_test, y_pred)
+            cm_display = ConfusionMatrixDisplay(cm, display_labels=class_names)
             st.set_option('deprecation.showPyplotGlobalUse', False)
+            cm_display.plot()
             st.pyplot()
 
-        if 'ROC Curve' in metrics_list:
-            st.subheader("ROC Curve")
-            plot_roc_curve(model, x_test, y_test)
-            st.pyplot()
+        # if 'ROC Curve' in metrics_list:
+        #     st.subheader("ROC Curve")
+        #     plot_roc_curve(model, x_test, y_test)
+        #     st.pyplot()
         
-        if 'Precision-Recall Curve' in metrics_list:
-            st.subheader('Precision-Recall Curve')
-            plot_precision_recall_curve(model, x_test, y_test)
-            st.pyplot()
+        # if 'Precision-Recall Curve' in metrics_list:
+        #     st.subheader('Precision-Recall Curve')
+        #     plot_precision_recall_curve(model, x_test, y_test)
+        #     st.pyplot()
 
     df = load_data()
     class_names = ['edible', 'poisonous']
